@@ -1,14 +1,40 @@
 cardapio = {
-    "pizza de calabresa": 45.00,
-    "pizza de frango com catupiry": 48.00,
-    "coca-cola 2L": 12.00,
+    "pizza de calabresa": {
+        "preco": 45.00,
+        "aliases": [
+            "calabresa",
+            "pizza calabresa",
+            "calabresa pizza"
+        ]
+    },
+    "pizza de frango com catupiry": {
+        "preco": 48.00,
+        "aliases": [
+            "frango com catupiry",
+            "pizza frango catupiry",
+            "frango catupiry pizza"
+        ]
+    },
+    "coca-cola 2L": {
+        "preco": 12.00,
+        "aliases": [
+            "coca",
+            "coca-cola",
+            "coca 2 litros",
+            "coca de 2 litros"
+        ]
+    }
 }
 
 def consultar_cardapio(item: str):
     """
     Consulta o cardápio e retorna o preço de um produto.
     """
-    if item in cardapio:
-        return cardapio[item]
-    else:
-        return "Item não encontrado no cardápio."
+    for produto in cardapio:
+        if item.lower() == produto.lower():
+            return cardapio[produto]["preco"]
+        for alias in cardapio[produto]["aliases"]:
+            if item.lower() == alias.lower():                
+                return cardapio[produto]["preco"]
+            
+    return "Item não encontrado no cardápio."

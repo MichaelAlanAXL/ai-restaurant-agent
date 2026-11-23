@@ -19,14 +19,20 @@ chat = client.chats.create(
     )
 )
 
+# Primeiro exemplo de uso da função consultar_cardapio
 response = chat.send_message(
     "Quanto custa uma pizza de calabresa?"
 )
-
 print(response.text)
 
+# Segundo exemplo de uso da função consultar_cardapio
 response = chat.send_message(
     "E uma coca-cola 2L?"
 )
+print(response.text)
 
+# Terceiro exemplo de uso da função consultar_cardapio
+response = chat.send_message(
+    "tem hambúrguer?"
+)
 print(response.text)
