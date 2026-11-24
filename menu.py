@@ -15,13 +15,15 @@ cardapio = {
             "frango catupiry pizza"
         ]
     },
-    "coca-cola 2L": {
+    "coca-cola 2l": {
         "preco": 12.00,
         "aliases": [
             "coca",
             "coca-cola",
             "coca 2 litros",
-            "coca de 2 litros"
+            "coca-cola 2l",
+            "coca de 2 litros",
+            "coca-cola 2L"
         ]
     }
 }

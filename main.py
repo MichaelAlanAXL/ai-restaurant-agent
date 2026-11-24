@@ -1,5 +1,6 @@
 import os
 from menu import consultar_cardapio
+from cart import adicionar_item, carrinho, listar_carrinho
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
@@ -15,24 +16,34 @@ client = genai.Client(api_key=api_key)
 chat = client.chats.create(
     model="gemini-3.5-flash-lite",
     config=types.GenerateContentConfig(
-        tools=[consultar_cardapio]
+        tools=[
+            consultar_cardapio, 
+            adicionar_item,
+            listar_carrinho
+        ]
     )
 )
 
-# Primeiro exemplo de uso da função consultar_cardapio
+# Check menu availability
 response = chat.send_message(
-    "Quanto custa uma pizza de calabresa?"
+    "Vocês têm pizza de calabresa e Coca-Cola 2L?"
 )
 print(response.text)
 
-# Segundo exemplo de uso da função consultar_cardapio
+# Check unavailable product
 response = chat.send_message(
-    "E uma coca-cola 2L?"
+    "Vocês tem hambúrguer?"
 )
 print(response.text)
 
-# Terceiro exemplo de uso da função consultar_cardapio
+# Add products to cart
 response = chat.send_message(
-    "tem hambúrguer?"
+    "Quero duas pizzas de calabresa e uma Coca-Cola 2L."
+)
+print(response.text)
+
+# Show shopping cart
+response = chat.send_message(
+    "Quero ver meu carrinho."
 )
 print(response.text)
