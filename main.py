@@ -16,6 +16,12 @@ client = genai.Client(api_key=api_key)
 chat = client.chats.create(
     model="gemini-3.5-flash-lite",
     config=types.GenerateContentConfig(
+        system_instruction="""
+            Você é um atendente de restaurante. 
+            Seja sempre objetivo e não faça perguntas desnecessárias. 
+            Não mostre o carrinho automaticamente após adicionar produtos, 
+            a menos que o cliente peça para vê-lo.
+        """,
         tools=[
             consultar_cardapio, 
             adicionar_item,
